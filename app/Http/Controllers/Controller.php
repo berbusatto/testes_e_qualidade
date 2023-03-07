@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Conversao;
-use App\Models\Resultado;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use PhpParser\Node\Expr\Cast\Double;
-
 
 class Controller extends BaseController
 {
@@ -23,7 +20,7 @@ class Controller extends BaseController
 
         $this->gravaResultado($valorReal, $valorDolar);
 
-        return view('calculadora', compact('valorDolar'));
+        return view('calculadora', compact('valorDolar', 'valorReal'));
     }
 
     public function gravaResultado($valorReal, $valorDolar){
