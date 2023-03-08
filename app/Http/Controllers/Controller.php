@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Conversao;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -13,7 +14,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function cambioDolar(Request $request){
+    public function cambioDolar(Request $request)
+    {
         $cotacaoDolar = $this->cotacaoDolar();
         $valorReal = $request->input('valor_real');
         $valorDolar = $valorReal / $cotacaoDolar;
@@ -23,7 +25,8 @@ class Controller extends BaseController
         return view('calculadora', compact('valorDolar', 'valorReal'));
     }
 
-    public function gravaResultado($valorReal, $valorDolar){
+    public function gravaResultado($valorReal, $valorDolar)
+    {
         $conversao = new Conversao([
             "valor_reais" => $valorReal,
             "valor_dolar" => $valorDolar,
@@ -32,11 +35,14 @@ class Controller extends BaseController
         $conversao->save();
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function cotacaoDolar()
     {
-        $client = new Client();
-        $response = $client->request('GET', 'https://economia.awesomeapi.com.br/json/last/USD-BRL');
-        $cotacao = json_decode($response->getBody(), true);
+        $cliente = new Client();
+        $resposta = $cliente->request('GET', 'https://economia.awesomeapi.com.br/json/last/USD-BRL');
+        $cotacao = json_decode($resposta->getBody(), true);
         return $cotacao['USDBRL']['bid'];
     }
 }

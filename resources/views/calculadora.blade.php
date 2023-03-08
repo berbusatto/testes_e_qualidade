@@ -13,7 +13,7 @@
 </head>
 <body class="bg-dark">
     <br>
-    <p class="h2 text-center text-white">CALCULADORA DE CÂMBIO</p>
+    <p class="h2 text-center text-white">CONVERTA REAL EM DÓLAR</p>
     <br>
     <form action="{{route('cambiodolar')}}" method="post">
         <div class="form-group text-center">
@@ -31,7 +31,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">U$</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Valor em dólares" name="resultado" @if(isset($valorDolar)) value="{{ number_format($valorDolar,2) }}" @endif>
+                <input type="text" class="form-control" aria-label="Valor em dólares" name="valor_dolar" @if(isset($valorDolar)) value="{{ number_format($valorDolar,2) }}" @endif>
             </div>
             <br><br>
             <input class="btn btn-info" type="submit" value="Calcular">

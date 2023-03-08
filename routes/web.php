@@ -21,7 +21,7 @@ Route::get('/calculadora', function () {
 Route::post('/calculadora/envia',
     [Controller::class, 'cambioDolar'])
     ->name('cambiodolar');
-//Route::redirect('/calculadora/envia','/calculadora');
+
 
 
 
