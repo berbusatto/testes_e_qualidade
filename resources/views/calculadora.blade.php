@@ -12,15 +12,17 @@
     </style>
 </head>
 <body class="bg-dark">
-    <br>
-    <p class="h2 text-center text-white">CONVERTA REAL EM DÓLAR</p>
-    <br>
-    <form action="{{route('cambiodolar')}}" method="post">
+
+<form action="{{route('cambiodolar')}}" method="post">
+        <br>
+        <p class="h2 text-center text-white">CONVERTA REAL EM DÓLAR</p>
+        <br>
+
         <div class="form-group text-center">
             @csrf
             <div class="input-group mb-lg-1 mx-auto" style="width: 200px;">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">R$</span>
+                    <span class="input-group-text bg-dark text-white">R$</span>
                 </div>
                 <input type="text" name="valor_real" class="form-control" aria-label="Valor em reais" @if(isset($valorReal)) value="{{ number_format($valorReal,2) }}" @endif>
             </div>
@@ -29,12 +31,12 @@
 
             <div class="input-group mb-lg-1 mx-auto" style="width: 200px;">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">U$</span>
+                    <span class="input-group-text bg-dark text-white">U$</span>
                 </div>
                 <input type="text" class="form-control" aria-label="Valor em dólares" name="valor_dolar" @if(isset($valorDolar)) value="{{ number_format($valorDolar,2) }}" @endif>
             </div>
             <br><br>
-            <input class="btn btn-info" type="submit" value="Calcular">
+            <input class="btn btn-outline-light" type="submit" value="Calcular">
 
         </div>
     </form>
