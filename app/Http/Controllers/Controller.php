@@ -45,4 +45,5 @@ class Controller extends BaseController
         $cotacao = json_decode($resposta->getBody(), true);
         return $cotacao['USDBRL']['bid'];
     }
+
 }

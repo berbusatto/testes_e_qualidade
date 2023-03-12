@@ -12,4 +12,5 @@ class Conversao extends Model
     protected $table = "conversoes";
 
     protected $fillable = ["valor_reais", "valor_dolar", "data"];
+
 }
