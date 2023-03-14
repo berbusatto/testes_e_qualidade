@@ -30,15 +30,16 @@ class ExampleTest extends TestCase
 
     public function test_converte_real_dolar():void
     {
-
-        $valorReal = 1;
+        $valorReal = 20;
+        $valorDolarEsperado = 3.8119198734442605;
 
         $cliente = new Client();
         $resposta = $cliente->request('GET', 'https://economia.awesomeapi.com.br/json/last/USD-BRL');
         $cotacao = json_decode($resposta->getBody(), true);
 
         $controller = new Controller();
-        self::assertEquals($controller->converteRealDolar($valorReal, $cotacao['USDBRL']['bid']), 1 / $cotacao['USDBRL']['bid']);
+
+        self::assertEquals($controller->converteRealDolar($valorReal, $cotacao['USDBRL']['bid']), $valorDolarEsperado);
 
     }
 

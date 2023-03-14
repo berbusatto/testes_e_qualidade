@@ -17,8 +17,11 @@ class Controller extends BaseController
     public function cambioDolar(Request $request)
     {
         $cotacaoDolar = $this->cotacaoDolar();
+
         $valorReal = $request->input('valor_real');
+
         $valorDolar = $this->converteRealDolar($valorReal, $cotacaoDolar);
+
         $this->gravaResultado($valorReal, $valorDolar);
 
         return view('calculadora', compact('valorDolar', 'valorReal'));
