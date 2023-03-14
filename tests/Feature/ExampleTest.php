@@ -9,6 +9,7 @@ use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use App\Helpers\cotacaoHelper;
 
 class ExampleTest extends TestCase
 {
@@ -21,9 +22,7 @@ class ExampleTest extends TestCase
         $controller = new Controller();
         $cotacaoDolar = $controller->cotacaoDolar();
 
-        $cliente = new Client();
-        $resposta = $cliente->request('GET', 'https://economia.awesomeapi.com.br/json/last/USD-BRL');
-        $cotacao = json_decode($resposta->getBody(), true);
+        $cotacao = cotacaoHelper::class->consomeApi();
 
         self::assertEquals($cotacao['USDBRL']['bid'], $cotacaoDolar);
     }
@@ -33,13 +32,21 @@ class ExampleTest extends TestCase
         $valorReal = 20;
         $valorDolarEsperado = 3.8119198734442605;
 
-        $cliente = new Client();
-        $resposta = $cliente->request('GET', 'https://economia.awesomeapi.com.br/json/last/USD-BRL');
-        $cotacao = json_decode($resposta->getBody(), true);
+        $cotacao = cotacaoHelper::class->consomeApi();
 
         $controller = new Controller();
 
         self::assertEquals($controller->converteRealDolar($valorReal, $cotacao['USDBRL']['bid']), $valorDolarEsperado);
+
+    }
+
+    public function test_grava_resultado():void
+    {
+
+    }
+
+    public function test_cambio_dolar():void
+    {
 
     }
 

@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\cotacaoHelper;
 use App\Models\Conversao;
-use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -16,10 +15,8 @@ class Controller extends BaseController
 
     public function cambioDolar(Request $request)
     {
-        $cotacaoDolar = $this->cotacaoDolar();
-
+        $cotacaoDolar = cotacaoHelper::class->consomeApi();
         $valorReal = $request->input('valor_real');
-
         $valorDolar = $this->converteRealDolar($valorReal, $cotacaoDolar);
 
         $this->gravaResultado($valorReal, $valorDolar);
@@ -40,16 +37,4 @@ class Controller extends BaseController
         ]);
         $conversao->save();
     }
-
-    /**
-     * @throws GuzzleException
-     */
-    public function cotacaoDolar()
-    {
-        $cliente = new Client();
-        $resposta = $cliente->request('GET', 'https://economia.awesomeapi.com.br/json/last/USD-BRL');
-        $cotacao = json_decode($resposta->getBody(), true);
-        return $cotacao['USDBRL']['bid'];
-    }
-
 }
