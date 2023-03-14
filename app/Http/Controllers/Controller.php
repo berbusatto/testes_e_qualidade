@@ -18,11 +18,14 @@ class Controller extends BaseController
     {
         $cotacaoDolar = $this->cotacaoDolar();
         $valorReal = $request->input('valor_real');
-        $valorDolar = $valorReal / $cotacaoDolar;
-
+        $valorDolar = $this->converteRealDolar($valorReal, $cotacaoDolar);
         $this->gravaResultado($valorReal, $valorDolar);
 
         return view('calculadora', compact('valorDolar', 'valorReal'));
+    }
+
+    public function converteRealDolar($valorReal, $cotacaoDolar) {
+        return $valorReal / $cotacaoDolar;
     }
 
     public function gravaResultado($valorReal, $valorDolar)
