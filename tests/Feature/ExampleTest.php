@@ -7,7 +7,6 @@ use App\Models\Conversao;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use App\Helpers\CotacaoHelper;
 
@@ -22,6 +21,7 @@ class ExampleTest extends TestCase
     {
         $cotacaoDolar = CotacaoHelper::consomeApi();
         self::assertIsArray($cotacaoDolar);
+        self::assertNotEmpty($cotacaoDolar['USDBRL']['bid']);
     }
 
     /**
@@ -30,7 +30,7 @@ class ExampleTest extends TestCase
     public function test_converte_real_dolar():void
     {
         $valorReal = 20;
-        $cotacao = ;
+        $cotacao = CotacaoHelper::consomeApi() ;
         $valorDolarEsperado = $valorReal / $cotacao['USDBRL']['bid'];
 
         $controller = new Controller();
@@ -41,22 +41,27 @@ class ExampleTest extends TestCase
 
     public function test_grava_resultado():void
     {
-        $inputs = [1, 20, 4.98];
+
+        $inputs = [
+            'valor_reais'=> 20,
+            'valor_dolar'=>  4.98
+        ];
 
         $controller = new Controller();
-        $controller->gravaResultado($inputs[1], $inputs[2]);
-
+        $controller->gravaResultado($inputs['valor_reais'], $inputs['valor_dolar']);
         $busca = Conversao::all()->last()->toArray();
 
-        $outputs = [$busca['id'], $busca['valor_reais'], $busca['valor_dolar']];
+        $outputs = [
+            'valor_reais'=> $busca['valor_reais'],
+            'valor_dolar'=>$busca['valor_dolar']
+        ];
 
-        foreach ($inputs as $key1 => $value1){
-            foreach ($outputs as $key2 => $value2) {
-                if($key1 === $key2) {
-                    self::assertEquals($value1, $value2);
-                }
-            }
+        foreach ($inputs as $chave => $valor){
+            if(isset($outputs[$chave]))
+                self::assertEquals($valor, $outputs[$chave]);
         }
+
+//
     }
 
     public function test_cambio_dolar():void
