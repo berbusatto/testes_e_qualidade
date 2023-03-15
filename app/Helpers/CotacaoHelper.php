@@ -5,7 +5,7 @@ namespace App\Helpers;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 
-class cotacaoHelper
+class CotacaoHelper
 {
     /**
      * @throws GuzzleException

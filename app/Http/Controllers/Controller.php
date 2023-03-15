@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\cotacaoHelper;
+use App\Helpers\CotacaoHelper;
 use App\Models\Conversao;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -13,9 +14,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    /**
+     * @throws GuzzleException
+     */
     public function cambioDolar(Request $request)
     {
-        $cotacaoDolar = cotacaoHelper::class->consomeApi();
+        $cotacaoDolar = CotacaoHelper::consomeApi();
         $valorReal = $request->input('valor_real');
         $valorDolar = $this->converteRealDolar($valorReal, $cotacaoDolar);
 
