@@ -7,8 +7,12 @@ use App\Models\Conversao;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use App\Helpers\CotacaoHelper;
+use App\Helpers\ComparaTesteHelper;
+use function PHPUnit\Framework\assertEquals;
+use function PHPUnit\Framework\assertTrue;
 
 class ExampleTest extends TestCase
 {
@@ -41,7 +45,6 @@ class ExampleTest extends TestCase
 
     public function test_grava_resultado():void
     {
-
         $inputs = [
             'valor_reais'=> 20,
             'valor_dolar'=>  4.98
@@ -56,12 +59,26 @@ class ExampleTest extends TestCase
             'valor_dolar'=>$busca['valor_dolar']
         ];
 
+        // DIFERENTES ABORDAGENS
+
+        // COM ARRAYMAP
+        array_map(function ($input, $output){
+            self::assertTrue($input===$output);
+        }, $inputs, $outputs);
+
+        // BUSCAR A COLLECTION E GARANTIR QUE SÓ TEM UM REGISTRO
+        $buscaCollection = Conversao::all();
+        self::assertCount(1,$buscaCollection);
+
+        // PELAS DIFERENÇAS ENTRE OS ARRAYS
+        $inconsistencias = array_diff_assoc($inputs, $outputs);
+        self::assertEmpty($inconsistencias);
+
+        // COMPARANDO CHAVES E VALORES DE CADA UM
         foreach ($inputs as $chave => $valor){
             if(isset($outputs[$chave]))
                 self::assertEquals($valor, $outputs[$chave]);
         }
-
-//
     }
 
     public function test_cambio_dolar():void
