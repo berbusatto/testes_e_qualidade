@@ -7,12 +7,10 @@ use App\Models\Conversao;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use App\Helpers\CotacaoHelper;
-use App\Helpers\ComparaTesteHelper;
-use function PHPUnit\Framework\assertEquals;
-use function PHPUnit\Framework\assertTrue;
+use Illuminate\Http\Request;
+
 
 class ExampleTest extends TestCase
 {
@@ -24,8 +22,7 @@ class ExampleTest extends TestCase
     public function test_cotacao_api(): void
     {
         $cotacaoDolar = CotacaoHelper::consomeApi();
-        self::assertIsArray($cotacaoDolar);
-        self::assertNotEmpty($cotacaoDolar['USDBRL']['bid']);
+        self::assertNotEmpty($cotacaoDolar);
     }
 
     /**
@@ -35,10 +32,10 @@ class ExampleTest extends TestCase
     {
         $valorReal = 20;
         $cotacao = CotacaoHelper::consomeApi() ;
-        $valorDolarEsperado = $valorReal / $cotacao['USDBRL']['bid'];
+        $valorDolarEsperado = $valorReal / $cotacao;
 
         $controller = new Controller();
-        $resultado = $controller->converteRealDolar($valorReal, $cotacao['USDBRL']['bid']);
+        $resultado = $controller->converteRealDolar($valorReal, $cotacao);
 
         self::assertEquals($valorDolarEsperado, $resultado);
     }
@@ -47,7 +44,7 @@ class ExampleTest extends TestCase
     {
         $inputs = [
             'valor_reais'=> 20,
-            'valor_dolar'=>  4.98
+            'valor_dolar'=>  5
         ];
 
         $controller = new Controller();
@@ -63,7 +60,7 @@ class ExampleTest extends TestCase
 
         // COM ARRAYMAP
         array_map(function ($input, $output){
-            self::assertTrue($input===$output);
+            self::assertTrue($input === $output);
         }, $inputs, $outputs);
 
         // BUSCAR A COLLECTION E GARANTIR QUE SÓ TEM UM REGISTRO
@@ -71,6 +68,9 @@ class ExampleTest extends TestCase
         self::assertCount(1,$buscaCollection);
 
         // PELAS DIFERENÇAS ENTRE OS ARRAYS
+
+        self::assertEqualsCanonicalizing($inputs, $outputs);
+
         $inconsistencias = array_diff_assoc($inputs, $outputs);
         self::assertEmpty($inconsistencias);
 
@@ -81,14 +81,25 @@ class ExampleTest extends TestCase
         }
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function test_cambio_dolar():void
     {
+        $dados = [20, 5, now(), now(), now()];
+        $request = Request::create('/calculadora/envia', 'POST', $dados);
 
+        $controller = new Controller();
+        $retornoView = $controller->cambioDolar($request);
+
+        dd($retornoView);
     }
 
+    /**
+     * @throws GuzzleException
+     */
     public function test_cotacao_helper():void
     {
-
+        self::assertNotEmpty(CotacaoHelper::consomeApi());
     }
-
 }

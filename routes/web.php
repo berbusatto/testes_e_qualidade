@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function (){
+    return view('login');
+});
+
+Route::post('/',
+    [LoginController::class, 'verificaUsuario'])
+    ->name('verificaUsuario');
+
 Route::get('/calculadora', function () {
     return view('calculadora');
 });
@@ -21,6 +30,8 @@ Route::get('/calculadora', function () {
 Route::post('/calculadora/envia',
     [Controller::class, 'cambioDolar'])
     ->name('cambiodolar');
+
+
 
 
 

@@ -13,6 +13,7 @@ class CotacaoHelper
     public static function consomeApi(){
         $cliente = new Client();
         $resposta = $cliente->request('GET', 'https://economia.awesomeapi.com.br/json/last/USD-BRL');
-        return json_decode($resposta->getBody(), true);
+        $cotacao = json_decode($resposta->getBody(), true);
+        return($cotacao['USDBRL']['bid']);
     }
 }
