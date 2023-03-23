@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,21 +17,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function (){
-    return view('login');
-});
+Route::get('/',
+    [AuthController::class, 'formularioCadastro']);
 
-Route::post('/',
-    [LoginController::class, 'verificaUsuario'])
-    ->name('verificaUsuario');
+Route::post('/cadastra',
+    [UserController::class, 'store'])->name('cadastraUsuario');
+
+Route::get('/login',
+    [AuthController::class, 'formularioLogin'])->name('login');
 
 Route::get('/calculadora', function () {
     return view('calculadora');
-});
+})->name('calculadora');
 
 Route::post('/calculadora/envia',
     [Controller::class, 'cambioDolar'])
     ->name('cambiodolar');
+
+
+
+//Route::post('/',
+//    [Controller::class, 'verificaUsuario'])
+//    ->name('verificaUsuario')->middleware('auth');
 
 
 

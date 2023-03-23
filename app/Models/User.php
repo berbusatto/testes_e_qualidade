@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,32 +12,25 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    // PODEM SER ALTERADOS
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
     ];
-
-    // NÃO PODEM SER ALTERADOS
     protected $guarded = [
 
     ];
 
-    // ATRIBUTO NÃO APARECE NAS CONSULTAS
-    // NÃO USAR EM MONOLITOS
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    // ATRIBUTO APARECE NAS CONSULTAS
     protected $visible = [
         //
     ];
 
-    // FAZ O CAST PARA PADRONIZAR OS FORMATOS DOS DADOS
-    // (ORIGINAL É DATETIME)
+
     protected $casts = [
         'email_verified_at' => 'date:d/m/y',
         'deleted_at' => 'date:d/m/y',

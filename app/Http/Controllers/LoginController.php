@@ -19,7 +19,7 @@ class LoginController extends Controller
         if($inputNome == $bancoNome){
             return view('calculadora');
         } else{
-            return view('login', compact('mensagemErro'));
+            return view('auth.login', compact('mensagemErro'));
         }
     }
 }
