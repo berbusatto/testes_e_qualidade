@@ -68,7 +68,6 @@ class ExampleTest extends TestCase
         self::assertCount(1,$buscaCollection);
 
         // PELAS DIFERENÇAS ENTRE OS ARRAYS
-
         self::assertEqualsCanonicalizing($inputs, $outputs);
 
         $inconsistencias = array_diff_assoc($inputs, $outputs);

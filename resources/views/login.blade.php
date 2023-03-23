@@ -13,14 +13,14 @@
 
     <form method="post" action="{{route('verificaUsuario')}}">
         <br>
-        <p class="h2 text-center text-white">DIGITE O SEU NOME</p>
+        <p class="h2 text-center text-white">VERIFICAÇÃO DE ACESSO</p>
         <br>
         @csrf
         <div class="form-group text-white text-center mb-lg-1 mx-auto" style="width: 200px;">
             <label for="inputNome">Insira o seu nome</label>
-            <input type="text" name="inputNome" class="form-control" id="inputNome" aria-describedby="nomeHelp" placeholder="Nome">
-            <small id="emailHelp" class="form-text text-muted">@if(isset($mensagemErro)) {{$mensagemErro}} @else O nome será verificado no banco de dados.@endif </small>
-
+            <input type="text" name="inputNome" class="form-control" id="inputNome" aria-describedby="nomeHelp">
+            <small id="mensagemErro" class="form-text text-muted">@if(isset($mensagemErro)) <p style="color: red;">{{$mensagemErro}}</p>@endif </small>
+            <br>
             <button type="submit" class="btn btn-outline-light">Verificar</button>
 
         </div>

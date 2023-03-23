@@ -11,7 +11,7 @@ class LoginController extends Controller
      */
     public function verificaUsuario(Request $request)
     {
-        $mensagemErro = ' O nome não consta no banco de dados';
+        $mensagemErro = 'O nome não consta no banco de dados';
         $inputNome = $request->input('inputNome');
 
         $bancoNome = 'bernardo';
