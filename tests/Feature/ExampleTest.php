@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ConversaoController;
 use App\Models\Conversao;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,7 +34,7 @@ class ExampleTest extends TestCase
         $cotacao = CotacaoHelper::consomeApi() ;
         $valorDolarEsperado = $valorReal / $cotacao;
 
-        $controller = new Controller();
+        $controller = new ConversaoController();
         $resultado = $controller->converteRealDolar($valorReal, $cotacao);
 
         self::assertEquals($valorDolarEsperado, $resultado);
@@ -47,7 +47,7 @@ class ExampleTest extends TestCase
             'valor_dolar'=>  5
         ];
 
-        $controller = new Controller();
+        $controller = new ConversaoController();
         $controller->gravaResultado($inputs['valor_reais'], $inputs['valor_dolar']);
         $busca = Conversao::all()->last()->toArray();
 
@@ -88,7 +88,7 @@ class ExampleTest extends TestCase
         $dados = [20, 5, now(), now(), now()];
         $request = Request::create('/calculadora/envia', 'POST', $dados);
 
-        $controller = new Controller();
+        $controller = new ConversaoController();
         $retornoView = $controller->cambioDolar($request);
 
         dd($retornoView);

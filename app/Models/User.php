@@ -16,13 +16,13 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'password',
     ];
     protected $guarded = [
 
     ];
 
     protected $hidden = [
-        'password',
         'remember_token',
     ];
 

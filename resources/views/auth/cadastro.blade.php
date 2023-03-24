@@ -12,52 +12,46 @@
 <body class="bg-dark">
 
     <form method="post" action="{{route('cadastraUsuario')}}">
-        <br>
-        <p class="h2 text-center text-white">CADASTRE-SE</p>
-        <br>
 
+        <div class="border border-light rounded p-4 mx-auto" style="max-width: 600px;">
+            <br>
+            <p class="h2 text-center text-white">CADASTRE-SE</p>
+            <br>
 
-        <div class="form-group text-center">
-            @csrf
-            <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-dark text-white">Usuário</span>
+            <div class="form-group text-center">
+                @csrf
+                <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-dark text-white">Usuário</span>
+                    </div>
+                    <input type="text" name="username" class="form-control" aria-label="username">
                 </div>
-                <input type="text" name="username" class="form-control" aria-label="username">
-            </div>
 
-            <br><br>
-            <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-dark text-white">E-mail</span>
+                <br><br>
+                <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-dark text-white">E-mail</span>
+                    </div>
+                    <input type="text" name="email" class="form-control" aria-label="email">
                 </div>
-                <input type="text" name="email" class="form-control" aria-label="email">
-            </div>
 
-            <br><br>
+                <br><br>
 
-            <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
-                <div class="input-group-prepend">
-                    <span class="input-group-text bg-dark text-white">Senha</span>
+                <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-dark text-white">Senha</span>
+                    </div>
+                    <input type="password" class="form-control" aria-label="password" name="password">
                 </div>
-                <input type="password" class="form-control" aria-label="password" name="password">
+
+                <br><br>
+                <a href=" {{route('login')}} " class="btn btn-outline-light">Fazer login</a>
+                <input class="btn btn-outline-success" type="submit" value="Cadastrar">
+
+
+
             </div>
-
-            <br><br>
-            <input class="btn btn-outline-light" type="submit" value="Cadastrar">
-
         </div>
-
-
-{{--        @csrf--}}
-{{--        <div class="form-group text-white text-center mb-lg-1 mx-auto" style="width: 200px;">--}}
-{{--            <label for="inputNome">Insira o seu nome</label>--}}
-{{--            <input type="text" name="inputNome" class="form-control" id="inputNome" aria-describedby="nomeHelp">--}}
-{{--            <small id="mensagemErro" class="form-text text-muted">@if(isset($mensagemErro)) <p style="color: red;">{{$mensagemErro}}</p>@endif </small>--}}
-{{--            <br>--}}
-{{--            <button type="submit" class="btn btn-outline-light">Verificar</button>--}}
-
-{{--        </div>--}}
     </form>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

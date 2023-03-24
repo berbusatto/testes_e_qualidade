@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\AuthConversaoController;
+use App\Http\Controllers\ConversaoController;
+use App\Http\Controllers\UserConversaoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,28 +16,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',
-    [AuthController::class, 'formularioCadastro']);
+Route::prefix('/')
+    ->group(function ()
+    {
+        Route::get('/', [AuthConversaoController::class, 'formularioCadastro'])
+            ->name('geraFormulario');
 
-Route::post('/cadastra',
-    [UserController::class, 'store'])->name('cadastraUsuario');
+        Route::post('/cadastra', [UserConversaoController::class, 'store'])
+            ->name('cadastraUsuario');
 
-Route::get('/login',
-    [AuthController::class, 'formularioLogin'])->name('login');
+        Route::get('/login', [AuthConversaoController::class, 'formularioLogin'])
+            ->name('login');
 
-Route::get('/calculadora', function () {
-    return view('calculadora');
-})->name('calculadora');
+        Route::post('/verifica', [AuthConversaoController::class, 'login'])
+            ->name('verificaLogin');
+    });
 
-Route::post('/calculadora/envia',
-    [Controller::class, 'cambioDolar'])
-    ->name('cambiodolar');
+Route::prefix('calculadora')->middleware('auth')
+    ->group(function ()
+    {
+        Route::get('/', function () {
+            return view('calculadora');
+        })
+            ->name('calculadora');
+
+        Route::post('/envia', [ConversaoController::class, 'cambioDolar'])
+            ->name('cambiodolar');
+    });
 
 
 
-//Route::post('/',
-//    [Controller::class, 'verificaUsuario'])
-//    ->name('verificaUsuario')->middleware('auth');
+
 
 
 
