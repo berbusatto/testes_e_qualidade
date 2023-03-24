@@ -17,18 +17,17 @@ class ConversaoController extends BaseController
     /**
      * @throws GuzzleException
      */
-    public function cambioDolar(Request $request)
+    public function cambioDolar(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $cotacaoDolar = CotacaoHelper::consomeApi();
         $valorReal = $request->input('valor_real');
         $valorDolar = $this->converteRealDolar($valorReal, $cotacaoDolar);
-
         $this->gravaResultado($valorReal, $valorDolar);
-
         return view('calculadora', compact('valorDolar', 'valorReal'));
     }
 
-    public function converteRealDolar($valorReal, $cotacaoDolar) {
+    public function converteRealDolar($valorReal, $cotacaoDolar): float|int
+    {
         return $valorReal / $cotacaoDolar;
     }
 

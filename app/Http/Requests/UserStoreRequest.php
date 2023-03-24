@@ -32,10 +32,8 @@ class UserStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'username.string' => 'O nome de usuário precisa ser uma string',
-            'password.string' => 'A senha precisa ser uma string',
-            'required' => 'Este campo é obrigatório',
-            'email' => 'Este campo deve ser um e-mail'
+            'email' => 'Digite um e-mail válido',
+            'password' => 'Digite uma senha válida.'
         ];
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\ConversaoController;
-use App\Models\User;
+use App\Http\Requests\UserStoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,7 +32,10 @@ class AuthConversaoController extends ConversaoController
             return redirect()->intended(route('calculadora'));
         }
 
-        $mensagemErro = 'Falha ao realizar login';
-        return redirect()->route('login')->with('mensagemErro',$mensagemErro);
+        $reqErro = new UserStoreRequest();
+        $mensagemErro = $reqErro->messages();
+
+        return redirect()->route('login')
+            ->with('mensagemErro',$mensagemErro);
     }
 }

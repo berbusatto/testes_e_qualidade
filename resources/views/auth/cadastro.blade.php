@@ -30,7 +30,7 @@
                 <br><br>
                 <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-white">E-mail</span>
+                        <span class="input-group-text bg-dark text-white">Email</span>
                     </div>
                     <input type="text" name="email" class="form-control" aria-label="email">
                 </div>
@@ -44,7 +44,7 @@
                     <input type="password" class="form-control" aria-label="password" name="password">
                 </div>
 
-                <br><br>
+                <br>
                 <a href=" {{route('login')}} " class="btn btn-outline-light">Fazer login</a>
                 <input class="btn btn-outline-success" type="submit" value="Cadastrar">
 
