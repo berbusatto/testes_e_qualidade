@@ -22,19 +22,20 @@
                 @csrf
                 <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-white">Email</span>
+                        <span class="input-group-text bg-dark text-white">&nbsp;Email&nbsp;</span>
                     </div>
                     <input type="text" name="email" class="form-control" aria-label="email">
                 </div>
                 <br><br>
                 <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-white">Senha</span>
+                        <span class="input-group-text bg-dark text-white">&nbsp;Senha&nbsp;</span>
                     </div>
                     <input type="password" class="form-control" aria-label="password" name="password">
                 </div>
 
                 <div>
+                    {{--                     INSERIR MENSAGEM DE ERRO--}}
                     @if (session()->has('mensagemErro'))
                         <br>
                         @foreach(session('mensagemErro') as $erro)
@@ -48,7 +49,6 @@
                 <a href="{{route('geraFormulario')}}" class="btn btn-outline-light">Cadastrar</a>
                 <input class="btn btn-outline-success" type="submit" value="Entrar">
 
-{{--                    // INSERIR MENSAGEM DE ERRO--}}
             </div>
         </div>
     </form>

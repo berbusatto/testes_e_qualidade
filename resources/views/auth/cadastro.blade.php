@@ -30,7 +30,7 @@
                 <br><br>
                 <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-white">Email</span>
+                        <span class="input-group-text bg-dark text-white">&ensp;Email&ensp;</span>
                     </div>
                     <input type="text" name="email" class="form-control" aria-label="email">
                 </div>
@@ -39,10 +39,12 @@
 
                 <div class="input-group mb-lg-1 mx-auto" style="width: 250px;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-white">Senha</span>
+                        <span class="input-group-text bg-dark text-white">&ensp;Senha&ensp;</span>
                     </div>
                     <input type="password" class="form-control" aria-label="password" name="password">
                 </div>
+
+                {{--                    INSERIR MENSAGEM DE ERRO--}}
 
                 <br>
                 <a href=" {{route('login')}} " class="btn btn-outline-light">Fazer login</a>
