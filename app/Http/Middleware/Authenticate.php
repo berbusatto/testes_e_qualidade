@@ -13,10 +13,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        $reqErro = new UserStoreRequest();
-        $mensagemErro = $reqErro->messages();
-        $erro = $mensagemErro['isFromErrorLogin'];
-        return route('loginErro', ['isFromErrorLogin'=> $erro]);
+        return route('loginErro', ['isFromErrorLogin'=> true]);
 
     }
 }

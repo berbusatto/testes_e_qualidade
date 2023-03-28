@@ -19,9 +19,7 @@ class AuthConversaoController extends ConversaoController
 
     public function formularioLogin(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $erro = $request->isFromErrorLogin;
-
-        return view('auth.login', ['isFromErrorLogin' => $erro]);
+        return view('auth.login', ['isFromErrorLogin' => $request->isFromErrorLogin]);
     }
 
     public function login(Request $request): \Illuminate\Http\RedirectResponse

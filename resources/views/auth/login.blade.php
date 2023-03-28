@@ -47,7 +47,7 @@
                 <div class="input-group mb-sm-1 mx-auto d-flex w-100">
                     @if($isFromErrorLogin)
                         <div class="small text-danger mx-auto">
-                            {{ $isFromErrorLogin }}
+                            <p>Você precisa estar logado</p>
                         </div>
                     @endif
                 </div>
