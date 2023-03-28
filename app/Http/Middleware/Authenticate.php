@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Requests\UserStoreRequest;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,10 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('login');
+        $reqErro = new UserStoreRequest();
+        $mensagemErro = $reqErro->messages();
+        $erro = $mensagemErro['isFromErrorLogin'];
+        return route('loginErro', ['isFromErrorLogin'=> $erro]);
+
     }
 }

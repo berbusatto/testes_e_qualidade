@@ -6,7 +6,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserConversaoController extends ConversaoController
+class UserController extends ConversaoController
 {
     /**
      * Display a listing of the resource.

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthConversaoController;
 use App\Http\Controllers\ConversaoController;
-use App\Http\Controllers\UserConversaoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,11 +22,14 @@ Route::prefix('/')
         Route::get('/', [AuthConversaoController::class, 'formularioCadastro'])
             ->name('geraFormulario');
 
-        Route::post('/cadastra', [UserConversaoController::class, 'store'])
+        Route::post('/cadastra', [UserController::class, 'store'])
             ->name('cadastraUsuario');
 
         Route::get('/login', [AuthConversaoController::class, 'formularioLogin'])
             ->name('login');
+
+        Route::get('/login/{isFromErrorLogin}', [AuthConversaoController::class, 'formularioLogin'])
+            ->name('loginErro');
 
         Route::post('/verifica', [AuthConversaoController::class, 'login'])
             ->name('verificaLogin');

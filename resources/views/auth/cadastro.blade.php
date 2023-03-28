@@ -9,10 +9,9 @@
 
 </head>
 <body class="bg-dark">
-    <div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="container d-flex align-items-center justify-content-center vh-100 mt-5">
         <div class="border border-light rounded p-4 mx-auto col-sm-10 col-md-8 col-lg-6 col-xl-4">
-            <form method="post" action="{{route('cadastraUsuario')}}">
-
+            <form method="post" action="{{route('cadastraUsuario')}}" class="container">
                 <div>
                     <br>
                     <p class="h2 text-center text-white">CADASTRE-SE</p>
@@ -23,19 +22,19 @@
                     @csrf
                     <div class="input-group mb-sm-1 mx-auto d-flex w-100">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-dark text-white">Usuário</span>
+                            <span class="input-group-text bg-dark text-white inputGroup-sizing-default">Usuário</span>
                         </div>
                         <input type="text" name="username" class="form-control" aria-label="username">
                     </div>
                     <br><br>
                     <div class="input-group mb-sm-1 mx-auto d-flex w-100">
                         <div class="input-group-prepend">
-                            <span class="input-group-text bg-dark text-white">&ensp;Email&ensp;</span>
+                            <span class="input-group-text bg-dark text-white inputGroup-sizing-default">&ensp;Email&ensp;</span>
                         </div>
                         <input type="text" name="email" class="form-control" aria-label="email">
                     </div>
                     <br><br>
-                    <div class="input-group mb-sm-1 mx-auto d-flex w-100">
+                    <div class="input-group mb-sm-1 mx-auto d-flex w-100 inputGroup-sizing-default">
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-dark text-white">&ensp;Senha&nbsp;</span>
                         </div>

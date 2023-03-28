@@ -12,16 +12,21 @@ class AuthConversaoController extends ConversaoController
 {
     public function formularioCadastro(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
+
+
         return view('auth.cadastro');
     }
 
-    public function formularioLogin(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
+    public function formularioLogin(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('auth.login');
+        $erro = $request->isFromErrorLogin;
+
+        return view('auth.login', ['isFromErrorLogin' => $erro]);
     }
 
     public function login(Request $request): \Illuminate\Http\RedirectResponse
     {
+
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']

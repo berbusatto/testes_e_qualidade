@@ -33,7 +33,8 @@ class UserStoreRequest extends FormRequest
     {
         return [
             'email' => 'Digite um e-mail válido',
-            'password' => 'Digite uma senha válida.'
+            'password' => 'Digite uma senha válida.',
+            'isFromErrorLogin' => 'Você precisa estar logado.'
         ];
     }
 }

@@ -7,20 +7,21 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body class="bg-dark">
-<div class="container d-flex align-items-center justify-content-center vh-100">
+<div class="container d-flex align-items-center justify-content-center vh-100 mt-5">
     <div class="border border-light rounded p-4 mx-auto col-sm-10 col-md-8 col-lg-6 col-xl-4">
-        <form method="post" action="{{route('verificaLogin')}}">
+        <form method="post" action="{{route('verificaLogin')}}" class="container">
             <div>
                 <br>
                 <p class="h2 text-center text-white">LOGIN</p>
                 <br>
             </div>
 
+
             <div class="form-group text-center">
                 @csrf
                 <div class="input-group mb-sm-1 mx-auto d-flex w-100">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-white">&ensp;Email&ensp;</span>
+                        <span class="input-group-text bg-dark text-white inputGroup-sizing-large">Email</span>
                     </div>
                     <input type="text" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" aria-label="email" value="{{ old('email') }}">
                     @if ($errors->has('email'))
@@ -28,12 +29,12 @@
                             {{ $errors->first('email') }}
                         </div>
                     @endif
-
                 </div>
+
                 <br><br>
                 <div class="input-group mb-sm-1 mx-auto d-flex w-100">
                     <div class="input-group-prepend">
-                        <span class="input-group-text bg-dark text-white">&ensp;Senha&ensp;</span>
+                        <span class="input-group-text bg-dark text-white inputGroup-sizing-large">Senha</span>
                     </div>
                     <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" aria-label="password" >
                     @if ($errors->has('password'))
@@ -41,14 +42,22 @@
                             {{ $errors->first('password') }}
                         </div>
                     @endif
-
                 </div>
+
+                <div class="input-group mb-sm-1 mx-auto d-flex w-100">
+                    @if($isFromErrorLogin)
+                        <div class="small text-danger mx-auto">
+                            {{ $isFromErrorLogin }}
+                        </div>
+                    @endif
+                </div>
+
                 <br><br>
                 <div class="text-center">
                     <a class="btn btn-outline-light mx-2" href="{{route('geraFormulario')}}">Cadastrar</a>
                     <input class="btn btn-outline-success mx-2" type="submit" value="Entrar">
                 </div>
-                <br><br>
+
             </div>
         </form>
     </div>
