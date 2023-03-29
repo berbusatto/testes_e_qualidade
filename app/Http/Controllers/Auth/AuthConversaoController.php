@@ -12,8 +12,6 @@ class AuthConversaoController extends ConversaoController
 {
     public function formularioCadastro(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-
-
         return view('auth.cadastro');
     }
 
@@ -24,7 +22,6 @@ class AuthConversaoController extends ConversaoController
 
     public function login(Request $request): \Illuminate\Http\RedirectResponse
     {
-
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']

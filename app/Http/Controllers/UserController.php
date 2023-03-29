@@ -39,7 +39,12 @@ class UserController extends ConversaoController
         ]);
         $userData->save();
 
-        return redirect()->route('login');
+        $reqErro = new UserStoreRequest();
+        $mensagemErro = $reqErro->messages();
+
+        return redirect()->route('geraFormulario')
+            ->with('mensagemErro',$mensagemErro);
+
     }
 
     /**

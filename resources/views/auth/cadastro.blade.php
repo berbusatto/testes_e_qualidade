@@ -26,6 +26,12 @@
                         </div>
                         <input type="text" name="username" class="form-control" aria-label="username">
                     </div>
+                    @if ($errors->has('username'))
+                        <div class="small text-danger mx-auto">
+                            {{ $errors->first('username') }}
+                        </div>
+                    @endif
+
                     <br><br>
                     <div class="input-group mb-sm-1 mx-auto d-flex w-100">
                         <div class="input-group-prepend">
@@ -33,6 +39,12 @@
                         </div>
                         <input type="text" name="email" class="form-control" aria-label="email">
                     </div>
+
+                    @if ($errors->has('email'))
+                        <div class="small text-danger mx-auto">
+                            {{ $errors->first('email') }}
+                        </div>
+                    @endif
                     <br><br>
                     <div class="input-group mb-sm-1 mx-auto d-flex w-100 inputGroup-sizing-default">
                         <div class="input-group-prepend">
@@ -40,6 +52,11 @@
                         </div>
                         <input type="password" class="form-control" aria-label="password" name="password">
                     </div>
+                    @if ($errors->has('password'))
+                        <div class="small text-danger mx-auto">
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
                     <br><br>
 
                     {{--INSERIR MENSAGEM DE ERRO--}}
