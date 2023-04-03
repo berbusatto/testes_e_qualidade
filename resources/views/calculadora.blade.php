@@ -25,6 +25,10 @@
                         <input type="text" name="valor_real" class="form-control" aria-label="Valor em reais" @if(isset($valorReal)) value="{{ number_format($valorReal,2) }}" @endif>
                     </div>
 
+                    @if ($errors->has('valor_real'))
+                        <div class="text-danger">{{ $errors->first('valor_real') }}</div>
+                    @endif
+
                     <br><br>
                     <div class="input-group mb-sm-1 mx-auto d-flex w-100">
                         <div class="input-group-prepend">
