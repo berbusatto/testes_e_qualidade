@@ -22,7 +22,16 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-dark text-white inputGroup-sizing-large">R$</span>
                         </div>
-                        <input type="text" name="valor_real" class="form-control" aria-label="Valor em reais" @if(isset($valorReal)) value="{{ number_format($valorReal,2) }}" @endif>
+                        <input
+                            type="text"
+                            name="valor_real"
+                            class="form-control"
+                            aria-label="Valor em reais"
+
+                            @if(isset($valorReal))
+                                value="{{ number_format($valorReal,2) }}"
+                            @endif
+                        >
                     </div>
 
                     @if ($errors->has('valor_real'))
@@ -34,7 +43,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text bg-dark text-white inputGroup-sizing-large">U$</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Valor em dólares" name="valor_dolar" @if(isset($valorDolar)) value="{{ number_format($valorDolar,2) }}" @endif>
+                        <input
+                                type="text"
+                                class="form-control disabled "
+                                aria-label="Valor em dólares"
+                                name="valor_dolar"
+                                @if(isset($valorDolar))
+                                    value="{{ number_format($valorDolar,2) }}"
+                                @endif>
                     </div>
 
                     <br><br>

@@ -31,7 +31,7 @@ class CalculadoraVerificaRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'valor_real.required' => 'O campo  é obrigatório.',
+            'valor_real.required' => 'O campo é obrigatório.',
             'valor_real.numeric' => 'O valor deve ser um número.',
             'valor_real.min' => 'O valor deve ser maior ou igual a :min.',
         ];

@@ -38,7 +38,7 @@ Route::prefix('/')
 Route::prefix('calculadora')->middleware('auth')
     ->group(function ()
     {
-        Route::get('/', function () {
+        Route::get('/calcular', function () {
             return view('calculadora');
         })
             ->name('calculadora');

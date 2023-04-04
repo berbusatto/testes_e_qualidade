@@ -17,11 +17,9 @@ class ConversaoController extends BaseController
     /**
      * @throws GuzzleException
      */
-    public function cambioDolar(CalculadoraVerificaRequest $request)
+    public function cambioDolar(CalculadoraVerificaRequest $request): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-
         $cotacaoDolar = CotacaoHelper::consomeApi();
-
         $valorReal = $request->input('valor_real');
         $valorDolar = $this->converteRealDolar($valorReal, $cotacaoDolar);
         $this->gravaResultado($valorReal, $valorDolar);
